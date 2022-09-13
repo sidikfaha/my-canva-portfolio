@@ -1,23 +1,19 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import { setupCounter } from './counter'
+import { Canvas } from "./base/canvas";
+import { Square } from "./shapes/square";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+(() => {
+  const canvas = Canvas.getInstance();
+  const square1 = new Square(canvas, 80, {
+    style: {
+      color: "rgba(255,0,0,.5)",
+    },
+    position: {
+      x: 50,
+      y: 100,
+    }
+  });
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+  square1.draw();
+
+  console.log(canvas.$context);
+})();
